@@ -1,0 +1,36 @@
+{
+  "name": "exampleshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "clean": "rm -rf build",
+    "build": "npm run clean && tsc",
+    "start:products": "node build/microservices/products/server.js",
+    "start:inventory": "node build/microservices/inventory/server.js",
+    "dev": "tsx index.ts",
+    "dev:products": "tsx microservices/products/server.ts",
+    "dev:inventory": "tsx microservices/inventory/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@fastify/helmet": "^13.0.2",
+    "@fastify/mongodb": "^10.0.0",
+    "@fastify/swagger": "^9.7.0",
+    "@fastify/swagger-ui": "^5.2.6",
+    "fastify": "^5.8.5",
+    "fastify-plugin": "^5.1.0",
+    "kafkajs": "^2.2.4",
+    "mongodb": "^7.2.0",
+    "typebox": "^1.1.37"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "pino-pretty": "^13.1.3",
+    "typescript": "^6.0.3"
+  }
+}

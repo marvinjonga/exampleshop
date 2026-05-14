@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: exampleshop-prod
+data:
+  NODE_ENV: "production"
+  PORT: "8081"
+  MONGO_DB: "exampleshop"
+  KAFKA_CLIENT_ID: "exampleshop-api"
+  MONGO_URI: "mongodb://mongo-service:27017"
+  KAFKA_BROKERS: "kafka-service:9092"

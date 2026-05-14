@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-setup
+  namespace: exampleshop-prod
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: db-setup
+          image: example-registry/exampleshop-api:latest
+          #overrides docker default CMD
+          command: ['node', 'build/scripts/setup-db.js']
+          envFrom:
+            - configMapRef:
+                name: app-config
+            - secretRef:
+                name: app-secrets

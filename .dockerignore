@@ -1,0 +1,7 @@
+node_modules/  
+.env             
+.git/
+build/           
+k8s/             
+docker/
+*.md
