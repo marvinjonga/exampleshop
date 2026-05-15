@@ -18,43 +18,6 @@ Most backend projects start simple and become expensive to scale later. examples
 
 ---
 
-## Architecture
-
-```
-┌──────────────────────┐     ┌──────────────────────┐
-│   Products Service   │     │  Inventory Service   │
-│   :8081              │     │  :8082               │
-│                      │     │                      │
-│  /api/v1/products    │     │  /api/v1/inventory   │
-│  Swagger: /docs      │     │  Swagger: /docs      │
-└──────────┬───────────┘     └──────────┬───────────┘
-           │                            │
-           └──────────────┬─────────────┘
-                          │
-           ┌──────────────▼─────────────┐
-           │          MongoDB           │
-           │   Sharded by storeid       │
-           │   Native driver, no ODM    │
-           └────────────────────────────┘
-
-           ┌────────────────────────────┐
-           │           Kafka            │
-           │   inventory.low-stock      │
-           │   inventory.out-of-stock   │
-           └────────────────────────────┘
-```
-
-Event flow — inventory changes propagate without direct service coupling:
-
-```
-Inventory Service
-  → publishes event to Kafka topic
-    → Products Service consumes event
-      → updates product stock field
-```
-
----
-
 ## Project structure
 
 ```
